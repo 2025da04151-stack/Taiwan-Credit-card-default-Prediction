@@ -114,7 +114,7 @@ with col_left:
     cm, annot=True, fmt=",d", cmap="Blues", ax=ax_cm,
     xticklabels=["Non Defaulter", "Defaulter"],
     yticklabels=["Non Defaulter", "Defaulter"],
-    linewidths=0.5, annot_kws={"size": 10},
+    linewidths=0.5, annot_kws={"size": 15},
     linecolor="#000000"
     )
     ax_cm.set_xlabel("Predicted")
