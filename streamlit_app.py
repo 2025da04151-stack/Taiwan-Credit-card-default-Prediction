@@ -23,7 +23,7 @@ from sklearn.metrics import (
 # ------------- Dataset Paths --------------------------
 BASE_FOLDER = os.path.dirname(__file__)
 MODEL_FOLDER = os.path.join(BASE_FOLDER, "model")
-DEFAULT_TESTFILE = os.path.join(BASE_FOLDER, "Test_data.csv")
+DEFAULT_TESTFILE = os.path.join(BASE_FOLDER, "test_data.csv")
 TARGET_COLUMN = "default payment next month"
 
 # ------------- Model Pickle Files ----------------------
@@ -50,7 +50,7 @@ with st.sidebar:
         st.success(f"{uploaded_test_data.name} ({len(df_test):,} rows)")
     else:
         df_test = pd.read_csv(DEFAULT_TESTFILE)
-        st.markdown(f"[Default Test Data({len(df_test):,} rows)](https://github.com/2025da04151-stack/Taiwan-Credit-card-default-Prediction/blob/7e28109f16ef164265967ec1ca3601453ed5ac51/Test_data.csv)")
+        st.markdown(f"[Default Test Data({len(df_test):,} rows)](https://github.com/2025da04151-stack/Taiwan-Credit-card-default-Prediction/blob/31f19e46e20b3bd2157974563b35c31ae2d6b14e/test_data.csv)")
         st.info("The Evalution metrics are shown based on Default test data. Upload Test file to get Test data specific evaluation metrics")
     
     st.divider()
