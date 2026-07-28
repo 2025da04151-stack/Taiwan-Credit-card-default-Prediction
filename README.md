@@ -19,18 +19,19 @@ Output/Target feature
 
 Source - <b>Default of Credit Card Clients</b> from UCI (https://archive.ics.uci.edu/dataset/350/default+of+credit+card+clients)
 
-|Property|Description|Additional information|
+|Property|Description|
 |-------|------------|
-|Dataset Characteristics|Multivariate||
-|Subject Area|Business||
-|Associated Tasks|Classification|Binary|
-|Number of Instances|300000||
-|Number of Features|23|Type -Integer,Real|
-|Target Feature|default payment next month|1=Default(Instance%-22.12%),0=Not Default(Instance%-77.88)|
+|Dataset Characteristics|Multivariate|
+|Subject Area|Business|
+|Associated Tasks|Binary Classification|
+|Number of Instances|300000|
+|Number of Features|23(Type -Integer,Real)|
+|Target Feature|default payment next month[1=Default(Instance%-22.12%),0=Not Default(Instance%-77.88)]|
 
 ### Features
 
 |Feature|Description|Demographic|Missing/Null values|Acceptable values|
+|-------|--------|--------|--------|------------|
 |ID|Unique Identifier||No|Integer|
 |LIMIT_BAL|Amount of the given credit (NT dollar): it includes both the individual consumer credit and his/her family (supplementary) credit.||No|Integer|
 |SEX|Gender of  Credit card holder|Yes|No|1 = male; 2 = female|
@@ -41,6 +42,7 @@ Source - <b>Default of Credit Card Clients</b> from UCI (https://archive.ics.uci
 |BILL_AMT1 to BILL_AMT6|Amount of bill statement (NT dollar) in reverse order of month((from April to September, 2005)||No|Integer|
 |PAY_AMT1 to PAY_AMT6|Amount of previous payment (NT dollar) reverse order of month(from April to September, 2005)||No|Integer|
 |default payment next month|Target variable||No|1=Default,0=Not Default|
+
 
 # Github Repository Link
 https://github.com/2025da04151-stack/Taiwan-Credit-card-default-Prediction.git
