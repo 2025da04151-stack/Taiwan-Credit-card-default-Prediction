@@ -1,21 +1,21 @@
 # Taiwan-Credit-card-default-Prediction
 
-#  Problem Statement
+##  Problem Statement
 Financial institutions face significant financial losses when credit card clients default on their monthly payments. The objective of this project is to predict whether a credit card client in Taiwan will default on their payment in the upcoming month based on their demographic details, credit limit, and 6-month historical repayment trends.
 
 This is a binary classification problem where the primary goal is to accurately identify potential defaulters early, enabling proactive risk mitigation. The complete solution—spanning data ingestion, preprocessing, predictive modeling, and an interactive web dashboard—is built and deployed as an end-to-end Streamlit application.
 
-Input features
+### Input features
 * Credit Limit
 * Demographics(Sex,Education,Marriage,Age)
 * Past Repayment Status
 * Bill Statement Amounts
 * Previous Payments Made
 
-Output/Target feature
+### Output/Target feature
 * Default payment in next month(0:Client will not default, 1: Client will default)
 
-# Dataset description
+## Dataset description
 
 Source - <b>Default of Credit Card Clients</b> from UCI (https://archive.ics.uci.edu/dataset/350/default+of+credit+card+clients)
 
@@ -43,11 +43,15 @@ Source - <b>Default of Credit Card Clients</b> from UCI (https://archive.ics.uci
 |PAY_AMT1 to PAY_AMT6|Amount of previous payment (NT dollar) reverse order of month(from April to September, 2005)||No|Integer|
 |default payment next month|Target variable||No|1=Default,0=Not Default|
 
+#### Some observation from Data Analysis
+1. LIMIT_BAL shows a slight negative correlation with default which signifies Clients with higher credit limits are slightly less likely to default
+2. There is an extremely strong positive correlation among all bill amount features (BILL_AMT1 to BILL_AMT6).Because these features carry redundant information, linear models (like Logistic Regression) may suffer from multicollinearity, so need to drop BILL_AMT2-6 for better results.
+3. Repayment Status(PAY_0 to PAY_6) features show the strongest positive correlation with the target variable (default payment next month), with PAY_0 (recent payment status) having the highest positive correlation.
 
-# Github Repository Link
+## Github Repository Link
 https://github.com/2025da04151-stack/Taiwan-Credit-card-default-Prediction.git
 
-# Models used:
+## Models used:
 Below 5 classification models are implemented to predict Credit Default. For the Training Testing split, 80:20 stratified split has been used 
 1. Logistic Regression
 2. Decision Tree Classifier
@@ -55,7 +59,7 @@ Below 5 classification models are implemented to predict Credit Default. For the
 4. Naive Bayes Classifier - Gaussian
 5. Ensemble Model - Random Forest
 
-Models are evaluated based on the below evaluation metrics:
+### Models are evaluated based on the below evaluation metrics:
 1. Accuracy
 2. AUC Score
 3. Precision
@@ -84,4 +88,4 @@ Random Forest (Ensemble)                 |0.8173     |0.7691     |0.6624     |0.
 |Random Forest (Ensemble)|Random Forest achieved the highest accuracy (81.73%), AUC (0.7691), F1-score (0.4622), and MCC (0.3898), showing the strongest overall performance. Although its precision (66.24%) was slightly lower than Logistic Regression, the better recall (35.49%) gave it a more balanced performance and improved its ability to identify positive cases without sacrificing overall reliability.|
 |Overall Winner for your dataset?|Random Forest (Ensemble) performed the best overall because it achieved the highest accuracy, AUC, F1-score, and MCC, while maintaining a good balance between precision and recall. This makes it the most reliable model for this dataset.|
 
-# Streamlit App Link
+## Streamlit App Link
