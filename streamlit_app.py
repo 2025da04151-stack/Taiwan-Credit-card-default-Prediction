@@ -60,13 +60,14 @@ with st.sidebar:
         list(MODEL_FILES.keys()),
         index=4,
     )
-
-# 
+# ---------------- Checking for Target Column Presence ---------------------
 if TARGET_COLUMN not in df_test.columns:
     st.error(f"Uploaded csv file should have target column: '{TARGET_COL}'")
     st.stop()
-   
+# ----------------- Dropping multicolinary columns -------------------------------------   
 df_test = df_test.drop(columns=["ID","BILL_AMT2","BILL_AMT3","BILL_AMT4","BILL_AMT5","BILL_AMT6"])
+
+# ----------------- Separating Target column from feature list -------------------------
 X = df_test.drop(columns=[TARGET_COLUMN])
 y = df_test[TARGET_COLUMN]
 
@@ -75,10 +76,11 @@ model = load_classification_modelmodel(selected_model)
 
 X_test = X.values
 
+# ----------------------- Predicting the Credit Default -----------------------
 y_pred = model.predict(X_test)
 y_proba = model.predict_proba(X_test)[:, 1]
 
-
+# --------------- Screen Design for the App ------------------------------------
 st.title("Credit Card Defaulter Prediction")
 st.write("""
 Interactively explore **Logistic Regression,Deecision Tree, KNN, Naive Bayes, Random Forest**.
