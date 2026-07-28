@@ -37,7 +37,7 @@ MODEL_DUMP_FILES = {
 
 @st.cache_resource
 def load_classification_model(name):
-    return joblib.load(os.path.join(MODEL_DIR, MODEL_DUMP_FILES[name]))
+    return joblib.load(os.path.join(MODEL_FOLDER, MODEL_DUMP_FILES[name]))
 
 # --------------------------- Sidebar ----------------------------
 with st.sidebar:
