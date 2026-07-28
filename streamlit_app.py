@@ -50,8 +50,8 @@ with st.sidebar:
         st.success(f"{uploaded_test_data.name} ({len(df_test):,} rows)")
     else:
         df_test = pd.read_csv(DEFAULT_TESTFILE)
-        st.markdown(f"[View Default Test Data({len(df_test):,} rows)](https://github.com/2025da04151-stack/Taiwan-Credit-card-default-Prediction/blob/7e28109f16ef164265967ec1ca3601453ed5ac51/Test_data.csv)")
-        st.info("The Evalution metrics is shown based on Default test data. Upload test file to get file specific evaluation metrics")
+        st.markdown(f"[Default Test Data({len(df_test):,} rows)](https://github.com/2025da04151-stack/Taiwan-Credit-card-default-Prediction/blob/7e28109f16ef164265967ec1ca3601453ed5ac51/Test_data.csv)")
+        st.info("The Evalution metrics are shown based on Default test data. Upload Test file to get Test data specific evaluation metrics")
     
     st.divider()
 
@@ -114,8 +114,12 @@ with col_left:
     cm, annot=True, fmt=",d", cmap="Blues", ax=ax_cm,
     xticklabels=["Non Defaulter", "Defaulter"],
     yticklabels=["Non Defaulter", "Defaulter"],
-    linewidths=0.5, annot_kws={"size": 12},
+    linewidths=0.5, annot_kws={"size": 10},
     )
+    for spine in ax_cm.spines.values():
+        spine.set_visible(True)
+        spine.set_color("#2563eb")  # Match your theme color (or use 'black')
+        spine.set_linewidth(2)  # Thickness of outer border
     ax_cm.set_xlabel("Predicted")
     ax_cm.set_ylabel("Actual")
     plt.tight_layout()
