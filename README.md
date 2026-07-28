@@ -1,4 +1,4 @@
-# Taiwan-Credit-card-default-Prediction
+# Taiwan-Credit-Card-Default-Prediction
 
 ##  Problem Statement
 Financial institutions face significant financial losses when credit card clients default on their monthly payments. The objective of this project is to predict whether a credit card client in Taiwan will default on their payment in the upcoming month based on their demographic details, credit limit, and 6-month historical repayment trends.
@@ -15,7 +15,7 @@ This is a binary classification problem where the primary goal is to accurately 
 ### Output/Target feature
 * Default payment in next month(0:Client will not default, 1: Client will default)
 
-## Dataset description
+## Dataset Description
 
 Source - <b>Default of Credit Card Clients</b> from UCI (https://archive.ics.uci.edu/dataset/350/default+of+credit+card+clients)
 
@@ -44,7 +44,7 @@ Source - <b>Default of Credit Card Clients</b> from UCI (https://archive.ics.uci
 |default payment next month|Target variable||No|1=Default,0=Not Default|
 
 #### Some observation from Data Analysis
-1. As per the acceptable values in source dataset in UCI, categorical fields has very few erroneous which are outside acceptable range - Marriage(0 with 0.18%), Education(0,5,6 -1.15%). These incorrect data are dropped before processing.
+1. As per the acceptable values in source dataset in UCI, categorical fields has very few erroneous which are outside acceptable range - Marriage(value 0 with 0.18%), Education(value 0,5,6 -1.15%). These incorrect data are dropped before processing.
 2. LIMIT_BAL shows a slight negative correlation with default which signifies Clients with higher credit limits are slightly less likely to default
 3. There is an extremely strong positive correlation among all bill amount features (BILL_AMT1 to BILL_AMT6).Because these features carry redundant information, linear models (like Logistic Regression) may suffer from multicollinearity, so need to drop BILL_AMT2-6 for better results.
 4. Repayment Status(PAY_0 to PAY_6) features show the strongest positive correlation with the target variable (default payment next month), with PAY_0 (recent payment status) having the highest positive correlation.
@@ -60,15 +60,24 @@ Source - <b>Default of Credit Card Clients</b> from UCI (https://archive.ics.uci
 
 <img width="1542" height="1343" alt="image" src="https://github.com/user-attachments/assets/6ffa4ffb-5f9a-4027-a98b-d82e2a08fc04" />
 
-### Relation between features with Target varible
+### Relation between features with Target variable
 <img width="1475" height="1416" alt="image" src="https://github.com/user-attachments/assets/17272b28-a8c6-4b5f-b69b-f3cda8a6bd2f" />
 
 
 ## Github Repository Link
 https://github.com/2025da04151-stack/Taiwan-Credit-card-default-Prediction.git
 
+### Description
+|Element|Description|
+|-------|-----------|
+|requirements.txt| Contains all the packages which are needed for successful processing of Streamlit app|
+|streamlit_app.py| The python code to design the Streamlit App|
+|Test_data.csv| The default csv file which will be used by Stremlit App to show the evaluation statistics incase no input is uploaded by the user|
+|model| This folder holds the models pickel dump files trained on the training data to be used by Streamlit App. There are 5 classification models pickel file along with the source code(Data analysis,preprocessing,model training and evalution) present in this folder|
+|README.md| This file contains the documentation of the project along with problem statement,Dataset description, Models used and Model performance Analysis report.|
+
 ## Models used:
-Below 5 classification models are implemented to predict Credit Default. For the Training Testing split, 80:20 stratified split has been used 
+Below 5 classification models are implemented to predict Credit Default. For the Training Testing split, 80:20 stratified split has been used(to handle imbalance in the data) 
 1. Logistic Regression
 2. Decision Tree Classifier
 3. K-Nearest Neighbor Classifier
@@ -81,7 +90,7 @@ Below 5 classification models are implemented to predict Credit Default. For the
 3. Precision
 4. Recall
 5. F1 Score
-6. Matthews Correlation Coeffi cient (MCC Score)
+6. Matthews Correlation Coefficient (MCC Score)
 
 ### Model Evaluation Metrics
 
@@ -97,12 +106,12 @@ Below 5 classification models are implemented to predict Credit Default. For the
 
 |ML Model Name|Observation about model performance|
 |-------------|--------|
-|Logistic Regression|LLogistic Regression achieved an accuracy of 80.86% with the highest precision (71.76%), meaning its positive predictions were usually correct. However, its AUC (0.7232) sat near the lower end among the better-performing models, and its low recall (23.47%) shows that many actual positive cases were missed. This is reflected in its F1-score (0.3537) and MCC (0.3332), which indicate only moderate overall performance.|
-|Decision Tree|Decision Tree Classifier achieved an accuracy of 80.80% and an AUC of 0.7169. By trading off some precision (60.90%), it captured significantly more positive cases, reaching a higher recall (38.91%) than even Random Forest. This improvement in capturing positive cases boosted its F1-score (0.4748) and MCC (0.3779), reflecting a strong overall balance.|
-|kNN|KNN Classifier yielded an accuracy of 80.26% and an AUC of 0.7240, performing closely to Logistic Regression and Decision Tree. It maintained decent precision (61.84%) but had a lower recall (30.05%), missing a noticeable portion of positive instances. Consequently, its F1-score (0.4045) and MCC (0.3311) sit firmly in the middle range among the evaluated models.|
-|Naive Bayes|Naive Bayes Classifier was an outlier, posting the lowest accuracy (36.82%) and precision (24.81%) due to its strong tendency to over-predict the positive class. While this resulted in an exceptionally high recall (90.23%), the flood of false positives limited its AUC to 0.6836 and severely dragged down its F1-score (0.3892) and MCC (0.1246), making it unreliable.|
-|Random Forest (Ensemble)|Random Forest demonstrated the strongest performance across almost every evaluation metric, leading with an accuracy of 81.84% and the highest AUC (0.7709). It maintained a solid precision of 67.37% alongside a good recall (36.11%). This optimal trade-off produced the best overall MCC (0.3989) and a top-tier F1-score (0.4702).|
-|Overall Winner for your dataset?|Random Forest (Ensemble) performed the best overall because it achieved the highest accuracy, AUC, F1-score, and MCC, while maintaining a good balance between precision and recall. This makes it the most reliable model for this dataset.|
+|Logistic Regression|Logistic Regression has an accuracy of 80.86% with the highest precision (71.76%), meaning its positive predictions were usually correct. However, its AUC (0.7232) is third among the better-performing models, and its low recall (23.47%) shows that many actual positive cases were missed. This is reflected in its F1-score (0.3537) and MCC (0.3332), which indicate only moderate overall performance.|
+|Decision Tree|Decision Tree Classifier has an accuracy of 80.80% and an AUC of 0.7169. By trading off some precision (60.90%), it captured significantly more positive cases, reaching a higher recall (38.91%) than even Random Forest. This improvement in capturing positive cases boosted its F1-score (0.4748) and MCC (0.3779), reflecting a strong overall balance.|
+|kNN|KNN Classifier has an accuracy of 80.26% and an AUC of 0.7240, performing closely to Logistic Regression and Decision Tree. It maintained decent precision (61.84%) but had a lower recall (30.05%), missing a noticeable portion of positive instances. Consequently, its F1-score (0.4045) and MCC (0.3311) sit firmly in the middle range among the evaluated models.|
+|Naive Bayes|Naive Bayes Classifier was perform poorest with the lowest accuracy (36.82%) and precision (24.81%) due to its strong tendency to over-predict the positive class. While this resulted in an exceptionally high recall (90.23%), the due to false positives limited its AUC to 0.6836 and dragged down its F1-score (0.3892) and MCC (0.1246), making it unreliable.|
+|Random Forest (Ensemble)|Random Forest demonstrated the strongest performance across almost every evaluation metric, leading with an accuracy of 81.84% and the highest AUC (0.7709). It maintained a solid precision of 67.37% alongside one of the good recall (36.11%) among best performing models. This optimal trade-off produced the best overall MCC (0.3989) and a top-tier F1-score (0.4702).|
+|Overall Winner for your dataset?|Random Forest (Ensemble) performed the best overall because it achieved the highest accuracy, AUC, F1-score, and MCC, while maintaining a good balance between precision and recall. This makes it the most reliable model for this dataset out of the 5 classification models on which prediction is tested.|
 
 ## Streamlit App Link
 
