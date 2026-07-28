@@ -50,9 +50,9 @@ with st.sidebar:
         st.success(f"{uploaded_test_data.name} ({len(df_test):,} rows)")
     else:
         df_test = pd.read_csv(DEFAULT_TESTFILE)
-        st.info(f"Default test data ({len(df_test):,} rows)")
-        st.markdown("[Download/View Test Data](https://github.com/2025da04151-stack/Taiwan-Credit-card-default-Prediction/blob/7e28109f16ef164265967ec1ca3601453ed5ac51/Test_data.csv)")
-
+        st.markdown("[View Default Test Data({len(df_test):,} rows)"](https://github.com/2025da04151-stack/Taiwan-Credit-card-default-Prediction/blob/7e28109f16ef164265967ec1ca3601453ed5ac51/Test_data.csv)")
+        st.info("The Evalution metrics will be shown based on default test data unless test file is uploaded")
+    
     st.divider()
 
     st.subheader("Select Classification Model")
