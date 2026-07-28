@@ -57,7 +57,7 @@ with st.sidebar:
     st.subheader("Select Classification Model")
     selected_model = st.selectbox(
         "Choose from below:",
-        list(MODEL_FILES.keys()),
+        list(MODEL_DUMP_FILES.keys()),
         index=4,
     )
 # ---------------- Checking for Target Column Presence ---------------------
