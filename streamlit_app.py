@@ -128,7 +128,7 @@ with col_right:
     fpr, tpr, _ = roc_curve(y, y_proba)
     fig_roc, ax_roc = plt.subplots(figsize=(4, 3.2))
     ax_roc.plot(fpr, tpr, color="#2563eb", lw=2,
-          label=f"AUC = {roc_auc_score(y, y_proba):.3f}")
+          label=f"AUC = {roc_auc_score(y, y_proba):.4f}")
     ax_roc.plot([0, 1], [0, 1], "k--", lw=1, alpha=0.5)
     ax_roc.set_xlabel("FPR")
     ax_roc.set_ylabel("TPR")
