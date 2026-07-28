@@ -72,7 +72,7 @@ X = df_test.drop(columns=[TARGET_COLUMN])
 y = df_test[TARGET_COLUMN]
 
 # ------------------------ Loading Model file --------------------------------
-model = load_classification_modelmodel(selected_model)
+model = load_classification_model(selected_model)
 
 X_test = X.values
 
