@@ -115,11 +115,8 @@ with col_left:
     xticklabels=["Non Defaulter", "Defaulter"],
     yticklabels=["Non Defaulter", "Defaulter"],
     linewidths=0.5, annot_kws={"size": 10},
+    linecolor="#000000"
     )
-    for spine in ax_cm.spines.values():
-        spine.set_visible(True)
-        spine.set_color("#2563eb")  # Match your theme color (or use 'black')
-        spine.set_linewidth(2)  # Thickness of outer border
     ax_cm.set_xlabel("Predicted")
     ax_cm.set_ylabel("Actual")
     plt.tight_layout()
