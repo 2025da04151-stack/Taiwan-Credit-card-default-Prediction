@@ -23,7 +23,7 @@ from sklearn.metrics import (
 # ------------- Dataset Paths --------------------------
 BASE_FOLDER = os.path.dirname(__file__)
 MODEL_FOLDER = os.path.join(BASE_FOLDER, "model")
-DEFAULT_TESTFILE = os.path.join(BASE_DIR, "Test_data.csv")
+DEFAULT_TESTFILE = os.path.join(BASE_FOLDER, "Test_data.csv")
 TARGET_COLUMN = "default payment next month"
 
 # ------------- Model Pickle Files ----------------------
