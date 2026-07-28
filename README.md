@@ -44,11 +44,24 @@ Source - <b>Default of Credit Card Clients</b> from UCI (https://archive.ics.uci
 |default payment next month|Target variable||No|1=Default,0=Not Default|
 
 #### Some observation from Data Analysis
-1. As per the accepatble values in source dataset in UCI, categorical fields has very few erroneous which are outside acceptable range - Marriage(0 with 0.18%), Education(0,5,6 -1.15%). These incorrect data are dropped before processing.
+1. As per the acceptable values in source dataset in UCI, categorical fields has very few erroneous which are outside acceptable range - Marriage(0 with 0.18%), Education(0,5,6 -1.15%). These incorrect data are dropped before processing.
 2. LIMIT_BAL shows a slight negative correlation with default which signifies Clients with higher credit limits are slightly less likely to default
 3. There is an extremely strong positive correlation among all bill amount features (BILL_AMT1 to BILL_AMT6).Because these features carry redundant information, linear models (like Logistic Regression) may suffer from multicollinearity, so need to drop BILL_AMT2-6 for better results.
 4. Repayment Status(PAY_0 to PAY_6) features show the strongest positive correlation with the target variable (default payment next month), with PAY_0 (recent payment status) having the highest positive correlation.
+5. Both defaulters and non-defaulters peak between ages 25 and 35, making younger clients the largest overall user demographic. While account volume decreases sharply past age 50, the proportion of defaults relative to group size remains fairly consistent across ages.
+6. Female clients represent a larger overall proportion of cardholders compared to male clients. However, male clients show a slightly higher relative rate of default within their group size.
+7. University-educated clients (Level 2) account for the highest default volume at 11.2% of all records, followed by Graduate School clients (Level 1) at 6.9%. Overall, graduate-level clients demonstrate a lower relative default risk compared to university or high school graduates.
+8. Single and married clients constitute almost the entire dataset, with single individuals holding the highest share of accounts. Married clients display a marginally higher rate of default relative to their total volume compared to single clients.
+9. Non-defaulters consistently maintain zero or negative payment delay scores from April (PAY_6) to September (PAY_0), indicating on-time payments. Conversely, defaulters show a steadily escalating delay trend over the 6-month period, spiking sharply at recent payment status (PAY_0).
 
+<img width="1384" height="1022" alt="image" src="https://github.com/user-attachments/assets/3bfb6a2c-62ab-4d15-ab39-69a123421b15" />
+
+### Relation between the features(Correlation HeatMap)
+
+<img width="1542" height="1343" alt="image" src="https://github.com/user-attachments/assets/6ffa4ffb-5f9a-4027-a98b-d82e2a08fc04" />
+
+### Relation between features with Target varible
+<img width="1475" height="1416" alt="image" src="https://github.com/user-attachments/assets/17272b28-a8c6-4b5f-b69b-f3cda8a6bd2f" />
 
 
 ## Github Repository Link
