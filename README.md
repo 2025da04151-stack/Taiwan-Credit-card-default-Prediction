@@ -72,7 +72,7 @@ https://github.com/2025da04151-stack/Taiwan-Credit-card-default-Prediction.git
 |-------|-----------|
 |requirements.txt| Contains all the packages which are needed for successful processing of Streamlit app|
 |streamlit_app.py| The python code to design the Streamlit App|
-|Test_data.csv| The default csv file which will be used by Stremlit App to show the evaluation statistics incase no input is uploaded by the user|
+|test_data.csv| The default csv file which will be used by Stremlit App to show the evaluation statistics incase no input is uploaded by the user|
 |model| This folder holds the models pickel dump files trained on the training data to be used by Streamlit App. There are 5 classification models pickel file along with the source code(Data analysis,preprocessing,model training and evalution) present in this folder|
 |README.md| This file contains the documentation of the project along with problem statement,Dataset description, Models used and Model performance Analysis report.|
 
@@ -117,7 +117,7 @@ Below 5 classification models are implemented to predict Credit Default. For the
 
 https://taiwan-credit-card-default-prediction-nmdfqnt3utjzuvoxuuywoj.streamlit.app/
 
-<img width="1090" height="547" alt="image" src="https://github.com/user-attachments/assets/9485727f-3f46-41df-8e46-22e6e5ce1709" />
-<img width="1090" height="492" alt="image" src="https://github.com/user-attachments/assets/b0668949-9362-4f7d-a11e-c6d2ec413991" />
+<img width="1090" height="581" alt="image" src="https://github.com/user-attachments/assets/95633864-ad83-4b89-8473-2e6e65c00f9c" />
+
 
 
