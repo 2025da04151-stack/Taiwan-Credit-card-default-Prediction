@@ -105,3 +105,5 @@ Below 5 classification models are implemented to predict Credit Default. For the
 |Overall Winner for your dataset?|Random Forest (Ensemble) performed the best overall because it achieved the highest accuracy, AUC, F1-score, and MCC, while maintaining a good balance between precision and recall. This makes it the most reliable model for this dataset.|
 
 ## Streamlit App Link
+
+https://taiwan-credit-card-default-prediction-nmdfqnt3utjzuvoxuuywoj.streamlit.app/
