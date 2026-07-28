@@ -25,7 +25,7 @@ Source - <b>Default of Credit Card Clients</b> from UCI (https://archive.ics.uci
 |Subject Area|Business|
 |Associated Tasks|Binary Classification|
 |Number of Instances|300000|
-|Number of Features|23(Type -Integer,Real)|
+|Number of Features|23(Type -Integer,Real)+ID(primary key)+Target feature|
 |Target Feature|default payment next month[1=Default(Instance%-22.12%),0=Not Default(Instance%-77.88)]|
 
 ### Features
@@ -44,9 +44,12 @@ Source - <b>Default of Credit Card Clients</b> from UCI (https://archive.ics.uci
 |default payment next month|Target variable||No|1=Default,0=Not Default|
 
 #### Some observation from Data Analysis
-1. LIMIT_BAL shows a slight negative correlation with default which signifies Clients with higher credit limits are slightly less likely to default
-2. There is an extremely strong positive correlation among all bill amount features (BILL_AMT1 to BILL_AMT6).Because these features carry redundant information, linear models (like Logistic Regression) may suffer from multicollinearity, so need to drop BILL_AMT2-6 for better results.
-3. Repayment Status(PAY_0 to PAY_6) features show the strongest positive correlation with the target variable (default payment next month), with PAY_0 (recent payment status) having the highest positive correlation.
+1. As per the accepatble values in source dataset in UCI, categorical fields has very few erroneous which are outside acceptable range - Marriage(0 with 0.18%), Education(0,5,6 -1.15%). These incorrect data are dropped before processing.
+2. LIMIT_BAL shows a slight negative correlation with default which signifies Clients with higher credit limits are slightly less likely to default
+3. There is an extremely strong positive correlation among all bill amount features (BILL_AMT1 to BILL_AMT6).Because these features carry redundant information, linear models (like Logistic Regression) may suffer from multicollinearity, so need to drop BILL_AMT2-6 for better results.
+4. Repayment Status(PAY_0 to PAY_6) features show the strongest positive correlation with the target variable (default payment next month), with PAY_0 (recent payment status) having the highest positive correlation.
+
+
 
 ## Github Repository Link
 https://github.com/2025da04151-stack/Taiwan-Credit-card-default-Prediction.git
@@ -71,21 +74,21 @@ Below 5 classification models are implemented to predict Credit Default. For the
 
 |ML Model Name|Accuracy|AUC|Precision|Recall|F1|MCC|
 |-------------|--------|---|---------|------|--|---|
-Logistic Regression            |0.8068     |0.7063     |0.6826     |0.2366     |0.3514     |0.3204 |   
-Decision Tree Classifier       |0.8087     |0.7247     |0.6201     |0.3482     |0.4459     |0.3619  |  
-KNN Classifier                 |0.8075     |0.7248     |0.6352     |0.3044     |0.4116     |0.3435   | 
-Naive Bayes Classifier         |0.4133     |0.6593     |0.2487     |0.8176     |0.3814     |0.1082    |
-Random Forest (Ensemble)                 |0.8173     |0.7691     |0.6624     |0.3549     |0.4622     |0.3898|
+|Logistic Regression            |0.8086     |0.7232     |0.7176     |0.2347     |0.3537     |0.3332  |  
+|Decision Tree Classifier       |0.8080     |0.7169     |0.6090     |0.3891     |0.4748     |0.3779  |  
+|KNN Classifier                 |0.8026     |0.7240     |0.6184     |0.3005     |0.4045     |0.3311  |  
+|Naive Bayes Classifier         |0.3682     |0.6836     |0.2481     |0.9023     |0.3892     |0.1246  |  
+|Random Forest                  |0.8184     |0.7709     |0.6737     |0.3611     |0.4702     |0.3989  | 
 
 ### Observation on Model Performance
 
 |ML Model Name|Observation about model performance|
 |-------------|--------|
-|Logistic Regression|Logistic Regression achieved an accuracy of 80.68% with the highest precision (68.26%), meaning its positive predictions were usually correct. However, its AUC (0.7063) was the lowest among the better-performing models, and the low recall (23.66%) shows that many actual positive cases were missed. This is reflected in its F1-score (0.3514) and MCC (0.3204), which indicate only moderate overall performance.|
-|Decision Tree|The Decision Tree slightly improved the accuracy (80.87%) and AUC (0.7247) compared to Logistic Regression. Its precision (62.01%) and recall (34.82%) were more balanced, resulting in a better F1-score (0.4459). The MCC (0.3619) also suggests that the model classified both classes more consistently.|
-|kNN|The kNN model achieved an accuracy of 80.75% with an AUC of 0.7248, which was almost identical to the Decision Tree. Although its precision (63.52%) remained good, the recall (30.44%) indicates that some positive cases were still missed. This led to an F1-score of 0.4116 and an MCC of 0.3435, showing acceptable but average overall performance.|
-|Naive Bayes|Naive Bayes produced the highest recall (81.76%), so it identified most positive cases. However, its accuracy (41.33%), AUC (0.6593), and precision (24.87%) were much lower than the other models, indicating a high number of false positives. As a result, its F1-score (0.3814) and MCC (0.1082) remained low, making it the weakest overall model despite its high recall.|
-|Random Forest (Ensemble)|Random Forest achieved the highest accuracy (81.73%), AUC (0.7691), F1-score (0.4622), and MCC (0.3898), showing the strongest overall performance. Although its precision (66.24%) was slightly lower than Logistic Regression, the better recall (35.49%) gave it a more balanced performance and improved its ability to identify positive cases without sacrificing overall reliability.|
+|Logistic Regression|LLogistic Regression achieved an accuracy of 80.86% with the highest precision (71.76%), meaning its positive predictions were usually correct. However, its AUC (0.7232) sat near the lower end among the better-performing models, and its low recall (23.47%) shows that many actual positive cases were missed. This is reflected in its F1-score (0.3537) and MCC (0.3332), which indicate only moderate overall performance.|
+|Decision Tree|Decision Tree Classifier achieved an accuracy of 80.80% and an AUC of 0.7169. By trading off some precision (60.90%), it captured significantly more positive cases, reaching a higher recall (38.91%) than even Random Forest. This improvement in capturing positive cases boosted its F1-score (0.4748) and MCC (0.3779), reflecting a strong overall balance.|
+|kNN|KNN Classifier yielded an accuracy of 80.26% and an AUC of 0.7240, performing closely to Logistic Regression and Decision Tree. It maintained decent precision (61.84%) but had a lower recall (30.05%), missing a noticeable portion of positive instances. Consequently, its F1-score (0.4045) and MCC (0.3311) sit firmly in the middle range among the evaluated models.|
+|Naive Bayes|Naive Bayes Classifier was an outlier, posting the lowest accuracy (36.82%) and precision (24.81%) due to its strong tendency to over-predict the positive class. While this resulted in an exceptionally high recall (90.23%), the flood of false positives limited its AUC to 0.6836 and severely dragged down its F1-score (0.3892) and MCC (0.1246), making it unreliable.|
+|Random Forest (Ensemble)|Random Forest demonstrated the strongest performance across almost every evaluation metric, leading with an accuracy of 81.84% and the highest AUC (0.7709). It maintained a solid precision of 67.37% alongside a good recall (36.11%). This optimal trade-off produced the best overall MCC (0.3989) and a top-tier F1-score (0.4702).|
 |Overall Winner for your dataset?|Random Forest (Ensemble) performed the best overall because it achieved the highest accuracy, AUC, F1-score, and MCC, while maintaining a good balance between precision and recall. This makes it the most reliable model for this dataset.|
 
 ## Streamlit App Link
