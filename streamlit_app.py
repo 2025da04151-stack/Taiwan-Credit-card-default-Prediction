@@ -42,7 +42,7 @@ def load_classification_model(name):
 # --------------------------- Sidebar ----------------------------
 with st.sidebar:
     
-    st.subheader(" Upload Test Data file ")
+    st.subheader(" Upload Data file ")
     uploaded_test_data = st.file_uploader("Upload csv file only", type=["csv"])
 
     if uploaded_test_data is not None:
@@ -51,7 +51,7 @@ with st.sidebar:
     else:
         df_test = pd.read_csv(DEFAULT_TESTFILE)
         st.markdown(f"[Default Test Data({len(df_test):,} rows)](https://github.com/2025da04151-stack/Taiwan-Credit-card-default-Prediction/blob/main/test_data.csv)")
-        st.info("The Evalution metrics are shown based on Default test data. Upload Test file to get Test data specific evaluation metrics")
+        st.info("The Metrics are shown based on Default test data. Upload File to get that data specific Evaluation Metrics")
     
     st.divider()
 
