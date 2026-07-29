@@ -63,7 +63,7 @@ with st.sidebar:
     )
 # ---------------- Checking for Target Column Presence ---------------------
 if TARGET_COLUMN not in df_test.columns:
-    st.error(f"Uploaded csv file should have target column: '{TARGET_COL}'")
+    st.error(f"Uploaded csv file should have target column: '{TARGET_COLUMN}'")
     st.stop()
 # ----------------- Dropping multicolinary columns -------------------------------------   
 df_test = df_test.drop(columns=["ID","BILL_AMT2","BILL_AMT3","BILL_AMT4","BILL_AMT5","BILL_AMT6"])
