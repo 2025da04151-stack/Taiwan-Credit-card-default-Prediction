@@ -22,10 +22,10 @@ Source - <b>Default of Credit Card Clients</b> from UCI (https://archive.ics.uci
 |Property|Description|
 |-------|------------|
 |Dataset Characteristics|Multivariate|
-|Subject Area|Business|
+|Subject Area|Business(Risk Analysis)|
 |Associated Tasks|Binary Classification|
 |Number of Instances|300000|
-|Number of Features|23(Type -Integer,Real)+ID(primary key)+Target feature|
+|Number of Features|25[ID+23(Integer)+Target variable]|
 |Target Feature|default payment next month[1=Default(Instance%-22.12%),0=Not Default(Instance%-77.88)]|
 
 ### Features
@@ -70,10 +70,11 @@ https://github.com/2025da04151-stack/Taiwan-Credit-card-default-Prediction.git
 ### Description
 |Element|Description|
 |-------|-----------|
+|ML_Assignment_2_Classification.ipynb|The source code with (Data analysis,preprocessing,model training and evaluation)|
 |requirements.txt| Contains all the packages which are needed for successful processing of Streamlit app|
 |streamlit_app.py| The python code to design the Streamlit App|
 |test_data.csv| The default csv file which will be used by Stremlit App to show the evaluation statistics incase no input is uploaded by the user|
-|model| This folder holds the models pickel dump files trained on the training data to be used by Streamlit App. There are 5 classification models pickel file along with the source code(Data analysis,preprocessing,model training and evalution) present in this folder|
+|model| This folder holds the models pickel dump files trained on the training data to be used by Streamlit App. There are 5 classification models pickel file.|
 |README.md| This file contains the documentation of the project along with problem statement,Dataset description, Models used and Model performance Analysis report.|
 
 ## Models used:
