@@ -50,7 +50,7 @@ with st.sidebar:
         st.success(f"{uploaded_test_data.name} ({len(df_test):,} rows)")
     else:
         df_test = pd.read_csv(DEFAULT_TESTFILE)
-        st.markdown(f"[Default Test Data({len(df_test):,} rows)](https://github.com/2025da04151-stack/Taiwan-Credit-card-default-Prediction/blob/31f19e46e20b3bd2157974563b35c31ae2d6b14e/test_data.csv)")
+        st.markdown(f"[Default Test Data({len(df_test):,} rows)](https://github.com/2025da04151-stack/Taiwan-Credit-card-default-Prediction/blob/main/test_data.csv)")
         st.info("The Evalution metrics are shown based on Default test data. Upload Test file to get Test data specific evaluation metrics")
     
     st.divider()
@@ -82,10 +82,10 @@ y_pred = model.predict(X_test)
 y_proba = model.predict_proba(X_test)[:, 1]
 
 # --------------- Screen Design for the App ------------------------------------
-st.title("Credit Card Defaulter Prediction")
+st.title("Taiwan Credit Card Defaulter Prediction")
 st.write("""
 Interactively explore **Logistic Regression,Deecision Tree, KNN, Naive Bayes, Random Forest**.
-Upload test data to check the Evaluation Metrics.
+Upload Data and Select Classification Model in left pane to check the Evaluation Metrics.
 """)
 
 st.header("Model Evaluation Metrics")
