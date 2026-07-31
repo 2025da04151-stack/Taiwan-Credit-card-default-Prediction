@@ -54,14 +54,14 @@ Source - <b>Default of Credit Card Clients</b> from UCI (https://archive.ics.uci
 8. Single and married clients constitute almost the entire dataset, with single individuals holding the highest share of accounts. Married clients display a marginally higher rate of default relative to their total volume compared to single clients.
 9. Non-defaulters consistently maintain zero or negative payment delay scores from April (PAY_6) to September (PAY_0), indicating on-time payments. Conversely, defaulters show a steadily escalating delay trend over the 6-month period, spiking sharply at recent payment status (PAY_0).
 
-<img width="1384" height="1022" alt="image" src="https://github.com/user-attachments/assets/3bfb6a2c-62ab-4d15-ab39-69a123421b15" />
+<img width="1090" height="753" alt="image" src="https://github.com/user-attachments/assets/6489e009-bea7-4257-882b-72c22c0255e4" />
 
 ### Relation between the features(Correlation HeatMap)
-
-<img width="1542" height="1343" alt="image" src="https://github.com/user-attachments/assets/6ffa4ffb-5f9a-4027-a98b-d82e2a08fc04" />
+<img width="1090" height="817" alt="image" src="https://github.com/user-attachments/assets/8659e760-4cd0-46bc-a8a2-aae1bdd28c85" />
 
 ### Relation between features with Target variable
-<img width="1475" height="1416" alt="image" src="https://github.com/user-attachments/assets/17272b28-a8c6-4b5f-b69b-f3cda8a6bd2f" />
+<img width="1090" height="1047" alt="image" src="https://github.com/user-attachments/assets/56faf285-b976-4964-9544-8a74dd98428f" />
+
 
 ### Data Preprocessing & Feature Engineering
 * `dropped redundant and multicollinear features` - 6 columns[ID(unique id with no predictive power),BILL_AMT2 to BILL_AMT6(multicollinear with BILL_AMT1)]
@@ -81,27 +81,28 @@ https://github.com/2025da04151-stack/Taiwan-Credit-card-default-Prediction.git
 ```
 Taiwan-Credit-card-default-Prediction/
 ├── model/
+│   ├── ML_Assignment_2_Binary_Classification.ipynb
 │   ├── decision_tree_classifier.pkl
 │   ├── knn_classifier.pkl
 │   ├── logistic_regression.pkl
 │   ├── naive_bayes_classifier.pkl
 │   └── random_forest.pkl
 ├── .gitignore
-├── ML_Assignment_2_Classification.ipynb
 ├── README.md
 ├── requirements.txt
 ├── streamlit_app.py
 └── test_data.csv
+
 ```
 
 ### Description
 |Element|Description|
 |-------|-----------|
-|ML_Assignment_2_Classification.ipynb|The source code with (Data analysis,preprocessing,model training and evaluation)|
 |requirements.txt| Contains all the packages which are needed for successful processing of Streamlit app|
 |streamlit_app.py| The python code to design the Streamlit App|
 |test_data.csv| The default csv file which will be used by Stremlit App to show the evaluation statistics incase no input is uploaded by the user|
-|model| This folder holds the models pickel dump files trained on the training data to be used by Streamlit App. There are 5 classification models pickel file.|
+|model/ML_Assignment_2_Binary_Classification.ipynb|The source code with (Data analysis,preprocessing,model training and evaluation)|
+|model/*.pkl| The models pickel dump files trained on the training data to be used by Streamlit App. There are 5 classification models pickel file.|
 |README.md| This file contains the documentation of the project along with problem statement,Dataset description, Models used and Model performance Analysis report.|
 
 ## Models used:
