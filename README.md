@@ -135,8 +135,4 @@ Below 5 classification models are implemented to predict Credit Default. For the
 
 https://taiwan-credit-card-default-prediction-nmdfqnt3utjzuvoxuuywoj.streamlit.app/
 
-<img width="1646" height="858" alt="image" src="https://github.com/user-attachments/assets/4f9c7063-4204-4cfa-a294-9e5dcce24756" />
-
-
-
-
+<img width="1691" height="918" alt="image" src="https://github.com/user-attachments/assets/61888c7a-3778-4cd1-a3ae-549abb1260be" />
