@@ -35,6 +35,8 @@ MODEL_DUMP_FILES = {
     "Random Forest(Ensemble)": "random_forest.pkl",
 }
 
+st.cache_resource.clear()
+
 @st.cache_resource
 def load_classification_model(name):
     return joblib.load(os.path.join(MODEL_FOLDER, MODEL_DUMP_FILES[name]))
