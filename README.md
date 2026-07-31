@@ -67,6 +67,23 @@ Source - <b>Default of Credit Card Clients</b> from UCI (https://archive.ics.uci
 ## Github Repository Link
 https://github.com/2025da04151-stack/Taiwan-Credit-card-default-Prediction.git
 
+### Repository Structure
+```
+Taiwan-Credit-card-default-Prediction/
+├── model/
+│   ├── decision_tree_classifier.pkl
+│   ├── knn_classifier.pkl
+│   ├── logistic_regression.pkl
+│   ├── naive_bayes_classifier.pkl
+│   └── random_forest.pkl
+├── .gitignore
+├── ML_Assignment_2_Classification.ipynb
+├── README.md
+├── requirements.txt
+├── streamlit_app.py
+└── test_data.csv
+```
+
 ### Description
 |Element|Description|
 |-------|-----------|
