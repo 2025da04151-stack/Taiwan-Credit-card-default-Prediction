@@ -30,18 +30,18 @@ Source - <b>Default of Credit Card Clients</b> from UCI (https://archive.ics.uci
 
 ### Features
 
-|Feature|Description|Demographic|Missing/Null values|Acceptable values|
-|-------|--------|--------|--------|------------|
-|ID|Unique Identifier||No|Integer|
-|LIMIT_BAL|Amount of the given credit (NT dollar): it includes both the individual consumer credit and his/her family (supplementary) credit.||No|Integer|
-|SEX|Gender of  Credit card holder|Yes|No|1 = male; 2 = female|
-|EDUCATION|Educational Qualification of Card holder|Yes|No|1 = graduate school; 2 = university; 3 = high school; 4 = others|
-|MARRIAGE|marital Status of Card holder|Yes|No|1 = married; 2 = single; 3 = others|
-|AGE|Age of Card holder in years|Yes|No|Integer|
-|PAY_0 to PAY_6|History of past payment-Repayment status(from April to September, 2005) in reverse order||No|-1 = pay duly; 1 = payment delay for one month; 2 = payment delay for two months; . . .; 8 = payment delay for eight months; 9 = payment delay for nine months and above.|
-|BILL_AMT1 to BILL_AMT6|Amount of bill statement (NT dollar) in reverse order of month((from April to September, 2005)||No|Integer|
-|PAY_AMT1 to PAY_AMT6|Amount of previous payment (NT dollar) reverse order of month(from April to September, 2005)||No|Integer|
-|default payment next month|Target variable||No|1=Default,0=Not Default|
+|Feature|Description|Demographic|Missing/Null values|Type|Acceptable values|
+|-------|--------|--------|--------|------------|------------|
+|ID|Unique Identifier||No|Categorical|Integer|
+|LIMIT_BAL|Amount of the given credit (NT dollar): it includes both the individual consumer credit and his/her family (supplementary) credit.||No|Continuous|Integer|
+|SEX|Gender of  Credit card holder|Yes|No|Categorical|1 = male; 2 = female|
+|EDUCATION|Educational Qualification of Card holder|Yes|No|Categorical|1 = graduate school; 2 = university; 3 = high school; 4 = others|
+|MARRIAGE|marital Status of Card holder|Yes|No|Categorical|1 = married; 2 = single; 3 = others|
+|AGE|Age of Card holder in years|Yes|No|Continuous|Integer|
+|PAY_0 to PAY_6|History of past payment-Repayment status(from April to September, 2005) in reverse order||No|Categorical|-1 = pay duly; 1 = payment delay for one month; 2 = payment delay for two months; . . .; 8 = payment delay for eight months; 9 = payment delay for nine months and above.|
+|BILL_AMT1 to BILL_AMT6|Amount of bill statement (NT dollar) in reverse order of month((from April to September, 2005)||No|Continuous|Integer|
+|PAY_AMT1 to PAY_AMT6|Amount of previous payment (NT dollar) reverse order of month(from April to September, 2005)||No|Continuous|Integer|
+|default payment next month|Target variable||No|Categorical|1=Default,0=Not Default|
 
 #### Some observation from Data Analysis
 1. As per the acceptable values in source dataset in UCI, categorical fields has very few erroneous which are outside acceptable range - Marriage(value 0 with 0.18%), Education(value 0,5,6 -1.15%). These incorrect data are dropped before processing.
@@ -63,6 +63,16 @@ Source - <b>Default of Credit Card Clients</b> from UCI (https://archive.ics.uci
 ### Relation between features with Target variable
 <img width="1475" height="1416" alt="image" src="https://github.com/user-attachments/assets/17272b28-a8c6-4b5f-b69b-f3cda8a6bd2f" />
 
+### Data Preprocessing & Feature Engineering
+* `dropped redundant and multicollinear features` - 6 columns[ID(unique id with no predictive power),BILL_AMT2 to BILL_AMT6(multicollinear with BILL_AMT1)]
+* `removed records with incorrect values` - removed 399 records having incorrect values in the fields Marriage and Education Fields.
+
+After this step there are 19 features(18 features+ Target feature) with 29601 records
+
+### Data Splitting
+* `Splitting Technique` - Stratified Split
+* `ratio` - 80:20
+* `Train:Test` - 23680:5921
 
 ## Github Repository Link
 https://github.com/2025da04151-stack/Taiwan-Credit-card-default-Prediction.git
