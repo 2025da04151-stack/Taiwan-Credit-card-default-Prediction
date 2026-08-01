@@ -157,7 +157,7 @@ with tab_all_compare:
     #eval_tab = "| Model | Accuracy | AUC | Precision | Recall | F1 Score | MCC |\n"
     #eval_tab += "|-------|----------|-----|-----------|--------|-----|-----|\n"
     for cols, classification_model in zip(col_model, MODEL_DUMP_FILES.keys()):
-        with cols:
+        with cols.container(border=True):
             cmodel = load_classification_model(classification_model)
             y_pred_model = cmodel.predict(X_test)
             y_proba_model = cmodel.predict_proba(X_test)[:, 1]
