@@ -106,7 +106,7 @@ st.markdown(
     button[data-baseweb="tab"] *, 
     button[data-baseweb="tab"] span, 
     button[data-baseweb="tab"] div {
-        font-size: 24px !important;    /* Increase size as needed */
+        font-size: 50px !important;    /* Increase size as needed */
         font-weight: 700 !important;   /* Bold text */
         line-height: 1.3 !important;
     }
