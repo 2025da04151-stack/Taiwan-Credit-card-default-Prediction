@@ -157,21 +157,22 @@ with tab_all_compare:
     #eval_tab = "| Model | Accuracy | AUC | Precision | Recall | F1 Score | MCC |\n"
     #eval_tab += "|-------|----------|-----|-----------|--------|-----|-----|\n"
     for cols, classification_model in zip(col_model, MODEL_DUMP_FILES.keys()):
-        cmodel = load_classification_model(classification_model)
-        y_pred_model = cmodel.predict(X_test)
-        y_proba_model = cmodel.predict_proba(X_test)[:, 1]
-        #eval_tab += f"| {classification_model} | {accuracy_score(y, y_pred):.4f} | {roc_auc_score(y, y_proba):.4f} | {precision_score(y, y_pred):.4f} | {recall_score(y, y_pred):.4f} | {f1_score(y, y_pred):.4f} | {matthews_corrcoef(y, y_pred):.4f} |\n"
-    #st.markdown(eval_tab)
-        st.subheader(f"{classification_model}")
-        st.metric("Accuracy", f"{accuracy_score(y, y_pred_model):.4f}")
-        st.divider()
-        st.metric("AUC Score", f"{roc_auc_score(y, y_proba_model):.4f}")
-        st.divider()
-        st.metric("Precision", f"{precision_score(y, y_pred_model):.4f}")
-        st.divider()
-        st.metric("Recall", f"{recall_score(y, y_pred_model):.4f}")
-        st.divider()
-        st.metric("F1 Score", f"{f1_score(y, y_pred_model):.4f}")
-        st.divider()
-        st.metric("MCC", f"{matthews_corrcoef(y, y_pred_model):.4f}")
-        st.divider()
+        with cols:
+            cmodel = load_classification_model(classification_model)
+            y_pred_model = cmodel.predict(X_test)
+            y_proba_model = cmodel.predict_proba(X_test)[:, 1]
+            #eval_tab += f"| {classification_model} | {accuracy_score(y, y_pred):.4f} | {roc_auc_score(y, y_proba):.4f} | {precision_score(y, y_pred):.4f} | {recall_score(y, y_pred):.4f} | {f1_score(y, y_pred):.4f} | {matthews_corrcoef(y, y_pred):.4f} |\n"
+            #st.markdown(eval_tab)
+            st.subheader(f"{classification_model}")
+            st.metric("Accuracy", f"{accuracy_score(y, y_pred_model):.4f}")
+            st.divider()
+            st.metric("AUC Score", f"{roc_auc_score(y, y_proba_model):.4f}")
+            st.divider()
+            st.metric("Precision", f"{precision_score(y, y_pred_model):.4f}")
+            st.divider()
+            st.metric("Recall", f"{recall_score(y, y_pred_model):.4f}")
+            st.divider()
+            st.metric("F1 Score", f"{f1_score(y, y_pred_model):.4f}")
+            st.divider()
+            st.metric("MCC", f"{matthews_corrcoef(y, y_pred_model):.4f}")
+            st.divider()
