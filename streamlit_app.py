@@ -177,7 +177,7 @@ with tab_all_compare:
         st.divider()
     with col_lr:
         eval_metric("Logistic Regression")
-   with col_dt:
+    with col_dt:
         eval_metric("Decision Tree Classifier")
     with col_knn:
         eval_metric("KNN Classifier")
