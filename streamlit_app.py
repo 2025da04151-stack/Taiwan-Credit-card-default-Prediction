@@ -29,10 +29,10 @@ TARGET_COLUMN = "default payment next month"
 # ------------- Model Pickle Files ----------------------
 MODEL_DUMP_FILES = {
     "Logistic Regression": "logistic_regression.pkl",
-    "Decision Tree Classifier": "decision_tree_classifier.pkl",
+    "Decision Tree ": "decision_tree_classifier.pkl",
     "KNN Classifier": "knn_classifier.pkl",
-    "Naive Bayes Classifier": "naive_bayes_classifier.pkl",
-    "Random Forest(Ensemble)": "random_forest.pkl",
+    "Naive Bayes": "naive_bayes_classifier.pkl",
+    "Random Forest": "random_forest.pkl",
 }
 
 st.cache_resource.clear()
