@@ -90,57 +90,62 @@ Interactively explore **Logistic Regression,Deecision Tree, KNN, Naive Bayes, Ra
 Upload Data and Select Classification Model in left pane to check the Evaluation Metrics.
 """)
 
+tab_selected_model, tab_all_compare = st.tabs([
+    "Selected Model Metrics", "All Models Comparison"
+])
 st.header("Model Evaluation Metrics")
-st.subheader(f"{selected_model}")
 
-eval_11, eval_12, eval_13 = st.columns(3)
-eval_11.metric("Accuracy", f"{accuracy_score(y, y_pred):.4f}")
-eval_12.metric("AUC Score", f"{roc_auc_score(y, y_proba):.4f}")
-eval_13.metric("Precision", f"{precision_score(y, y_pred):.4f}")
+with tab_selected_model:
+    st.subheader(f"{selected_model}")
+    eval_11, eval_12, eval_13 = st.columns(3)
+    eval_11.metric("Accuracy", f"{accuracy_score(y, y_pred):.4f}")
+    eval_12.metric("AUC Score", f"{roc_auc_score(y, y_proba):.4f}")
+    eval_13.metric("Precision", f"{precision_score(y, y_pred):.4f}")
+    
+    eval_21, eval_22, eval_23 = st.columns(3)
+    eval_21.metric("Recall", f"{recall_score(y, y_pred):.4f}")
+    eval_22.metric("F1 Score", f"{f1_score(y, y_pred):.4f}")
+    eval_23.metric("MCC", f"{matthews_corrcoef(y, y_pred):.4f}")
+    st.divider()
+    
+    # ----------------- Confusion Matrix + ROC Curve -----------------------------
+    col_left, col_right = st.columns(2)
 
-eval_21, eval_22, eval_23 = st.columns(3)
-eval_21.metric("Recall", f"{recall_score(y, y_pred):.4f}")
-eval_22.metric("F1 Score", f"{f1_score(y, y_pred):.4f}")
-eval_23.metric("MCC", f"{matthews_corrcoef(y, y_pred):.4f}")
+    with col_left:
+        st.markdown("**Confusion Matrix**")
+        cm = confusion_matrix(y, y_pred)
+        fig_cm, ax_cm = plt.subplots(figsize=(6, 4.8))
+        sns.heatmap(
+        cm, annot=True, fmt=",d", cmap="Blues", ax=ax_cm,
+        xticklabels=["Non Defaulter", "Defaulter"],
+        yticklabels=["Non Defaulter", "Defaulter"],
+        linewidths=0.7, annot_kws={"size": 20},
+        linecolor="#000000"
+        )
+        ax_cm.set_xlabel("Predicted")
+        ax_cm.set_ylabel("Actual")
+        plt.tight_layout()
+        st.pyplot(fig_cm)
+        plt.close()
 
-st.divider()
+    with col_right:
+        st.markdown("**ROC Curve**")
+        fpr, tpr, _ = roc_curve(y, y_proba)
+        fig_roc, ax_roc = plt.subplots(figsize=(4, 3.2))
+        ax_roc.plot(fpr, tpr, color="#2563eb", lw=2,
+              label=f"AUC = {roc_auc_score(y, y_proba):.4f}")
+        ax_roc.plot([0, 1], [0, 1], "k--", lw=1, alpha=0.5)
+        ax_roc.set_xlabel("FPR")
+        ax_roc.set_ylabel("TPR")
+        ax_roc.legend(loc="lower right")
+        ax_roc.grid(alpha=0.2)
+        plt.tight_layout()
+        st.pyplot(fig_roc)
+        plt.close()
+    # ---------------------- Classification Report --------------------------------
+    st.markdown("**Classification Report**")
+    report = classification_report(y, y_pred, target_names=["Non Defaulter", "Defaulter"])
+    st.code(report, language="text")
 
-# ----------------- Confusion Matrix + ROC Curve -----------------------------
-col_left, col_right = st.columns(2)
-
-with col_left:
-    st.markdown("**Confusion Matrix**")
-    cm = confusion_matrix(y, y_pred)
-    fig_cm, ax_cm = plt.subplots(figsize=(6, 4.8))
-    sns.heatmap(
-    cm, annot=True, fmt=",d", cmap="Blues", ax=ax_cm,
-    xticklabels=["Non Defaulter", "Defaulter"],
-    yticklabels=["Non Defaulter", "Defaulter"],
-    linewidths=0.7, annot_kws={"size": 20},
-    linecolor="#000000"
-    )
-    ax_cm.set_xlabel("Predicted")
-    ax_cm.set_ylabel("Actual")
-    plt.tight_layout()
-    st.pyplot(fig_cm)
-    plt.close()
-
-with col_right:
-    st.markdown("**ROC Curve**")
-    fpr, tpr, _ = roc_curve(y, y_proba)
-    fig_roc, ax_roc = plt.subplots(figsize=(4, 3.2))
-    ax_roc.plot(fpr, tpr, color="#2563eb", lw=2,
-          label=f"AUC = {roc_auc_score(y, y_proba):.4f}")
-    ax_roc.plot([0, 1], [0, 1], "k--", lw=1, alpha=0.5)
-    ax_roc.set_xlabel("FPR")
-    ax_roc.set_ylabel("TPR")
-    ax_roc.legend(loc="lower right")
-    ax_roc.grid(alpha=0.2)
-    plt.tight_layout()
-    st.pyplot(fig_roc)
-    plt.close()
-
-# ---------------------- Classification Report --------------------------------
-st.markdown("**Classification Report**")
-report = classification_report(y, y_pred, target_names=["Non Defaulter", "Defaulter"])
-st.code(report, language="text")
+with tab_all_compare:
+     st.subheader(f"All Model Comparision on Data Uploaded")
