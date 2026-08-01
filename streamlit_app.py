@@ -97,10 +97,12 @@ Upload Data and Select Classification Model in left pane to check the Evaluation
 st.markdown(
     """
     <style>
-    /* Target the text inside st.tabs buttons */
-    button[data-baseweb="tab"] div p {
-        font-size: 20px !important; /* Adjust size as needed */
-        font-weight: bold;          /* Optional: make it bold */
+    button[data-baseweb="tab"] {
+        padding: 12px 20px !important; /* Increases the overall button size */
+    }
+    button[data-baseweb="tab"] p {
+        font-size: 22px !important;   /* Increase tab name size here */
+        font-weight: bold !important;  /* Optional: makes the text bold */
     }
     </style>
     """,
