@@ -94,22 +94,6 @@ Interactively explore **Logistic Regression,Deecision Tree, KNN, Naive Bayes, Ra
 Upload Data and Select Classification Model in left pane to check the Evaluation Metrics.
 """)
 
-st.markdown("""
-<style>
-/* Tab label */
-button[data-baseweb="tab"] {
-    font-size: 22px !important;
-    font-weight: 600;
-    padding: 10px 20px;
-}
-
-/* Optional: make the tab list taller */
-div[data-baseweb="tab-list"] {
-    gap: 10px;
-}
-</style>
-""", unsafe_allow_html=True)
-
 tab_selected_model, tab_all_compare = st.tabs([
     "Selected Model Metrics", "All Models Comparison"
 ])
@@ -168,7 +152,7 @@ with tab_selected_model:
         st.code(report, language="text")
 
 with tab_all_compare:
-    st.subheader(f"All Model Comparision on Data Uploaded")
+    st.subheader(f"All Model Comparision on Uploaded Data")
     col_model = st.columns(5)
     #eval_tab = "| Model | Accuracy | AUC | Precision | Recall | F1 Score | MCC |\n"
     #eval_tab += "|-------|----------|-----|-----------|--------|-----|-----|\n"
