@@ -129,7 +129,8 @@ Below 5 classification models are implemented to predict Credit Default. For the
 |Decision Tree Classifier       |0.8080     |0.7169     |0.6090     |0.3891     |0.4748     |0.3779  |  
 |KNN Classifier                 |0.8026     |0.7240     |0.6184     |0.3005     |0.4045     |0.3311  |  
 |Naive Bayes Classifier         |0.3682     |0.6836     |0.2481     |<b>0.9023</b>     |0.3892     |0.1246  |  
-|Random Forest                  |<b>0.8244</b>|<b>0.7753</b>|0.7088     |0.3611     |<b>0.4784</b>     |<b>0.4177</b>|
+|Random Forest                 |<b>0.8237</b>    |<b>0.7687</b>    |0.7022    |0.3641    |<b>0.4796</b>    |<b>0.4162</b> |
+
 
 ### Observation on Model Performance
 
@@ -139,11 +140,12 @@ Below 5 classification models are implemented to predict Credit Default. For the
 |Decision Tree|Decision Tree Classifier has an accuracy of 80.80% and an AUC of 0.7169. By trading off some precision (60.90%), it captured significantly more positive cases, reaching a higher recall (38.91%) than even Random Forest. This improvement in capturing positive cases boosted its F1-score (0.4748) and MCC (0.3779), reflecting a strong overall balance.|
 |kNN|KNN Classifier has an accuracy of 80.26% and an AUC of 0.7240, performing closely to Logistic Regression and Decision Tree. It maintained decent precision (61.84%) but had a lower recall (30.05%), missing a noticeable portion of positive instances. Consequently, its F1-score (0.4045) and MCC (0.3311) sit firmly in the middle range among the evaluated models.|
 |Naive Bayes|Naive Bayes Classifier was performed poorest with the lowest accuracy (36.82%) and precision (24.81%) due to its strong tendency to over-predict the positive class. While this resulted in an exceptionally high recall (90.23%), the due to false positives limited its AUC to 0.6836 and dragged down its F1-score (0.3892) and MCC (0.1246), making it unreliable.|
-|Random Forest (Ensemble)|Random Forest demonstrated the strongest performance across almost every evaluation metric, leading with an accuracy of 82.44% and the highest AUC (0.7753). It maintained a solid precision of 70.88% alongside one of the good recall (36.11%) among best performing models. This optimal trade-off produced the best overall MCC (0.4177) and a top-tier F1-score (0.4784) among the used models.|
+|Random Forest (Ensemble)|Random Forest demonstrated the strongest performance across almost every evaluation metric, leading with an accuracy of 82.37% and the highest AUC (0.7687). It maintained a solid precision of 70.22% alongside one of the good recall (36.41%) among best performing models. This optimal trade-off produced the best overall MCC (0.4162) and a top-tier F1-score (0.4796) among the used models.|
 |Overall Winner for your dataset?|<b>Random Forest (Ensemble)</b> performed the best overall because it achieved the highest AUC, and MCC, F1-score and accuracy while maintaining a good balance between precision and recall. This makes it the most reliable model for this dataset(with imbalanced data) out of the 5 classification models on which prediction is tested.|
 
 ## Streamlit App Link
 
 https://taiwan-credit-card-default-prediction-nmdfqnt3utjzuvoxuuywoj.streamlit.app/
+<img width="1722" height="922" alt="image" src="https://github.com/user-attachments/assets/d1d7315a-853c-4a27-88d6-53fdb2584a08" />
 
-<img width="1691" height="918" alt="image" src="https://github.com/user-attachments/assets/61888c7a-3778-4cd1-a3ae-549abb1260be" />
+
