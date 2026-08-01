@@ -94,21 +94,6 @@ Interactively explore **Logistic Regression,Deecision Tree, KNN, Naive Bayes, Ra
 Upload Data and Select Classification Model in left pane to check the Evaluation Metrics.
 """)
 
-st.markdown(
-    """
-    <style>
-    button[data-baseweb="tab"] {
-        padding: 12px 20px !important; /* Increases the overall button size */
-    }
-    button[data-baseweb="tab"] p {
-        font-size: 22px !important;   /* Increase tab name size here */
-        font-weight: bold !important;  /* Optional: makes the text bold */
-    }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
-
 tab_selected_model, tab_all_compare = st.tabs([
     "Selected Model Metrics", "All Models Comparison"
 ])
@@ -191,3 +176,19 @@ with tab_all_compare:
             st.divider()
             st.metric("MCC", f"{matthews_corrcoef(y, y_pred_model):.4f}")
             st.divider()
+            
+            st.markdown("**Confusion Matrix**")
+            cm = confusion_matrix(y, y_pred_model)
+            fig_cm, ax_cm = plt.subplots(figsize=(4, 3.2))
+            sns.heatmap(
+            cm, annot=True, fmt=",d", cmap="Blues", ax=ax_cm,
+            xticklabels=["Non Defaulter", "Defaulter"],
+            yticklabels=["Non Defaulter", "Defaulter"],
+            linewidths=0.7, annot_kws={"size": 20},
+            linecolor="#000000"
+            )
+            ax_cm.set_xlabel("Predicted")
+            ax_cm.set_ylabel("Actual")
+            plt.tight_layout()
+            st.pyplot(fig_cm)
+            plt.close()
