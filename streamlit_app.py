@@ -20,11 +20,6 @@ from sklearn.metrics import (
     roc_curve,
 )
 
-st.set_page_config(
-    page_title="Taiwan Credit Card Defaulter Prediction",
-    layout="wide"  # 
-)
-
 # ------------- Dataset Paths --------------------------
 BASE_FOLDER = os.path.dirname(__file__)
 MODEL_FOLDER = os.path.join(BASE_FOLDER, "model")
@@ -89,7 +84,10 @@ y_pred = model.predict(X_test)
 y_proba = model.predict_proba(X_test)[:, 1]
 
 # --------------- Screen Design for the App ------------------------------------
-st.title("Taiwan Credit Card Defaulter Prediction")
+st.set_page_config(
+    page_title="Taiwan Credit Card Defaulter Prediction",
+    layout="centered" 
+)
 st.write("""
 Interactively explore **Logistic Regression,Deecision Tree, KNN, Naive Bayes, Random Forest**.
 Upload Data and Select Classification Model in left pane to check the Evaluation Metrics.
