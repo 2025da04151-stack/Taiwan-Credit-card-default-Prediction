@@ -192,3 +192,19 @@ with tab_all_compare:
             plt.tight_layout()
             st.pyplot(fig_cm)
             plt.close()
+            
+            st.divider()
+
+            st.markdown("**ROC Curve**")
+            fpr, tpr, _ = roc_curve(y, y_proba_model)
+            fig_roc, ax_roc = plt.subplots(figsize=(4, 3.2))
+            ax_roc.plot(fpr, tpr, color="#2563eb", lw=2,
+            label=f"AUC = {roc_auc_score(y, y_proba_model):.4f}")
+            ax_roc.plot([0, 1], [0, 1], "k--", lw=1, alpha=0.5)
+            ax_roc.set_xlabel("FPR")
+            ax_roc.set_ylabel("TPR")
+            ax_roc.legend(loc="lower right")
+            ax_roc.grid(alpha=0.2)
+            plt.tight_layout()
+            st.pyplot(fig_roc)
+            plt.close()
