@@ -112,7 +112,7 @@ with tab_selected_model:
     st.divider()
     
     # ----------------- Confusion Matrix + ROC Curve -----------------------------
-    col_left, col_right = st.columns(2)
+    col_left, col_mid, col_right = st.columns(3)
 
     with col_left:
         st.markdown("**Confusion Matrix**")
@@ -131,7 +131,7 @@ with tab_selected_model:
         st.pyplot(fig_cm)
         plt.close()
 
-    with col_right:
+    with col_mid:
         st.markdown("**ROC Curve**")
         fpr, tpr, _ = roc_curve(y, y_proba)
         fig_roc, ax_roc = plt.subplots(figsize=(4, 3.2))
@@ -146,17 +146,42 @@ with tab_selected_model:
         st.pyplot(fig_roc)
         plt.close()
     # ---------------------- Classification Report --------------------------------
-    st.markdown("**Classification Report**")
-    report = classification_report(y, y_pred, target_names=["Non Defaulter", "Defaulter"])
-    st.code(report, language="text")
+    with col_right:
+        st.markdown("**Classification Report**")
+        report = classification_report(y, y_pred, target_names=["Non Defaulter", "Defaulter"])
+        st.code(report, language="text")
 
 with tab_all_compare:
     st.subheader(f"All Model Comparision on Data Uploaded")
-    eval_tab = "| Model | Accuracy | AUC | Precision | Recall | F1 Score | MCC |\n"
-    eval_tab += "|-------|----------|-----|-----------|--------|-----|-----|\n"
+    col_lr, col_dt, col_knn, col4_nb, col_rf = st.columns(5)
+    #eval_tab = "| Model | Accuracy | AUC | Precision | Recall | F1 Score | MCC |\n"
+    #eval_tab += "|-------|----------|-----|-----------|--------|-----|-----|\n"
     for classification_model in MODEL_DUMP_FILES.keys():
         cmodel = load_classification_model(classification_model)
-        y_pred = cmodel.predict(X_test)
-        y_proba = cmodel.predict_proba(X_test)[:, 1]
-        eval_tab += f"| {classification_model} | {accuracy_score(y, y_pred):.4f} | {roc_auc_score(y, y_proba):.4f} | {precision_score(y, y_pred):.4f} | {recall_score(y, y_pred):.4f} | {f1_score(y, y_pred):.4f} | {matthews_corrcoef(y, y_pred):.4f} |\n"
-    st.markdown(eval_tab)
+        y_pred[classification_model = cmodel.predict(X_test)
+        y_proba[classification_model] = cmodel.predict_proba(X_test)[:, 1]
+        #eval_tab += f"| {classification_model} | {accuracy_score(y, y_pred):.4f} | {roc_auc_score(y, y_proba):.4f} | {precision_score(y, y_pred):.4f} | {recall_score(y, y_pred):.4f} | {f1_score(y, y_pred):.4f} | {matthews_corrcoef(y, y_pred):.4f} |\n"
+    #st.markdown(eval_tab)
+    def eval_metric(model):
+        st.metric("Accuracy", f"{accuracy_score(y, y_pred[model]):.4f}")
+        st.divider()
+        st.metric("AUC Score", f"{roc_auc_score(y, y_proba[model]):.4f}")
+        st.divider()
+        st.metric("Precision", f"{precision_score(y, y_pred[model]):.4f}")
+        st.divider()
+        st.metric("Recall", f"{recall_score(y, y_pred[model]):.4f}")
+        st.divider()
+        st.metric("F1 Score", f"{f1_score(y, y_pred[model]):.4f}")
+        st.divider()
+        st.metric("MCC", f"{matthews_corrcoef(y, y_pred[model]):.4f}")
+        st.divider()
+    with col_lr:
+        eval_metric("Logistic Regression")
+   with col_dt:
+        eval_metric("Decision Tree Classifier")
+    with col_knn:
+        eval_metric("KNN Classifier")
+    with col_nb:
+        eval_metric("Naive Bayes Classifier")
+    with col_rf:
+        eval_metric("Random Forest(Ensemble)")
