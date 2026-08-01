@@ -158,7 +158,7 @@ with tab_all_compare:
     #eval_tab += "|-------|----------|-----|-----------|--------|-----|-----|\n"
     for classification_model in MODEL_DUMP_FILES.keys():
         cmodel = load_classification_model(classification_model)
-        y_pred[classification_model = cmodel.predict(X_test)
+        y_pred[classification_model] = cmodel.predict(X_test)
         y_proba[classification_model] = cmodel.predict_proba(X_test)[:, 1]
         #eval_tab += f"| {classification_model} | {accuracy_score(y, y_pred):.4f} | {roc_auc_score(y, y_proba):.4f} | {precision_score(y, y_pred):.4f} | {recall_score(y, y_pred):.4f} | {f1_score(y, y_pred):.4f} | {matthews_corrcoef(y, y_pred):.4f} |\n"
     #st.markdown(eval_tab)
