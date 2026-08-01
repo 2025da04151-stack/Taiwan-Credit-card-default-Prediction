@@ -131,6 +131,7 @@ Below 5 classification models are implemented to predict Credit Default. For the
 |Naive Bayes Classifier         |0.3682     |0.6836     |0.2481     |<b>0.9023</b>     |0.3892     |0.1246  |  
 |Random Forest                 |<b>0.8237</b>    |<b>0.7687</b>    |0.7022    |0.3641    |<b>0.4796</b>    |<b>0.4162</b> |
 
+<img width="1419" height="736" alt="image" src="https://github.com/user-attachments/assets/d650086e-9154-437b-b524-90cc7e342da5" />
 
 ### Observation on Model Performance
 
