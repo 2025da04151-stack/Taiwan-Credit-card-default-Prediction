@@ -84,10 +84,8 @@ y_pred = model.predict(X_test)
 y_proba = model.predict_proba(X_test)[:, 1]
 
 # --------------- Screen Design for the App ------------------------------------
-st.set_page_config(
-    page_title="Taiwan Credit Card Defaulter Prediction",
-    layout="centered" 
-)
+st.set_page_config(layout="wide")
+st.title("<center>Taiwan Credit Card Defaulter Prediction</center>")
 st.write("""
 Interactively explore **Logistic Regression,Deecision Tree, KNN, Naive Bayes, Random Forest**.
 Upload Data and Select Classification Model in left pane to check the Evaluation Metrics.
