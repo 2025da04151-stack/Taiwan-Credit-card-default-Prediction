@@ -20,6 +20,11 @@ from sklearn.metrics import (
     roc_curve,
 )
 
+st.set_page_config(
+    page_title="Taiwan Credit Card Defaulter Prediction",
+    layout="wide"  # 
+)
+
 # ------------- Dataset Paths --------------------------
 BASE_FOLDER = os.path.dirname(__file__)
 MODEL_FOLDER = os.path.join(BASE_FOLDER, "model")
