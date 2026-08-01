@@ -153,35 +153,25 @@ with tab_selected_model:
 
 with tab_all_compare:
     st.subheader(f"All Model Comparision on Data Uploaded")
-    col_lr, col_dt, col_knn, col4_nb, col_rf = st.columns(5)
+    col_model = st.columns(5)
     #eval_tab = "| Model | Accuracy | AUC | Precision | Recall | F1 Score | MCC |\n"
     #eval_tab += "|-------|----------|-----|-----------|--------|-----|-----|\n"
-    for classification_model in MODEL_DUMP_FILES.keys():
+    for cols, classification_model in zip(col_model, MODEL_DUMP_FILES.keys()):
         cmodel = load_classification_model(classification_model)
-        y_pred_model[classification_model] = cmodel.predict(X_test)
-        y_proba_model[classification_model] = cmodel.predict_proba(X_test)[:, 1]
+        y_pred_model = cmodel.predict(X_test)
+        y_proba_model = cmodel.predict_proba(X_test)[:, 1]
         #eval_tab += f"| {classification_model} | {accuracy_score(y, y_pred):.4f} | {roc_auc_score(y, y_proba):.4f} | {precision_score(y, y_pred):.4f} | {recall_score(y, y_pred):.4f} | {f1_score(y, y_pred):.4f} | {matthews_corrcoef(y, y_pred):.4f} |\n"
     #st.markdown(eval_tab)
-    def eval_metric(model):
-        st.metric("Accuracy", f"{accuracy_score(y, y_pred_model[model]):.4f}")
+        st.subheader(f"{classification_model}")
+        st.metric("Accuracy", f"{accuracy_score(y, y_pred_model):.4f}")
         st.divider()
-        st.metric("AUC Score", f"{roc_auc_score(y, y_proba_model[model]):.4f}")
+        st.metric("AUC Score", f"{roc_auc_score(y, y_proba_model):.4f}")
         st.divider()
-        st.metric("Precision", f"{precision_score(y, y_pred_model[model]):.4f}")
+        st.metric("Precision", f"{precision_score(y, y_pred_model):.4f}")
         st.divider()
-        st.metric("Recall", f"{recall_score(y, y_pred_model[model]):.4f}")
+        st.metric("Recall", f"{recall_score(y, y_pred_model):.4f}")
         st.divider()
-        st.metric("F1 Score", f"{f1_score(y, y_pred_model[model]):.4f}")
+        st.metric("F1 Score", f"{f1_score(y, y_pred_model):.4f}")
         st.divider()
-        st.metric("MCC", f"{matthews_corrcoef(y, y_pred_model[model]):.4f}")
+        st.metric("MCC", f"{matthews_corrcoef(y, y_pred_model):.4f}")
         st.divider()
-    with col_lr:
-        eval_metric("Logistic Regression")
-    with col_dt:
-        eval_metric("Decision Tree Classifier")
-    with col_knn:
-        eval_metric("KNN Classifier")
-    with col_nb:
-        eval_metric("Naive Bayes Classifier")
-    with col_rf:
-        eval_metric("Random Forest(Ensemble)")
