@@ -93,7 +93,6 @@ Upload Data and Select Classification Model in left pane to check the Evaluation
 tab_selected_model, tab_all_compare = st.tabs([
     "Selected Model Metrics", "All Models Comparison"
 ])
-st.header("Model Evaluation Metrics")
 
 with tab_selected_model:
     st.subheader(f"{selected_model}")
@@ -148,4 +147,12 @@ with tab_selected_model:
     st.code(report, language="text")
 
 with tab_all_compare:
-     st.subheader(f"All Model Comparision on Data Uploaded")
+    st.subheader(f"All Model Comparision on Data Uploaded")
+    eval_tab = "| Model | Accuracy | AUC | Precision | Recall | F1 Score | MCC |\n"
+    eval_tab += "|-------|----------|-----|-----------|--------|-----|-----|\n"
+    for classification_model in MODEL_DUMP_FILES.keys():
+        cmodel = load_classification_model(classification_model)
+        y_pred = cmodel.predict(X_test)
+        y_proba = cmodel.predict_proba(X_test)[:, 1]
+        eval_tab += f"| {classification_model} | {accuracy_score(y, y_pred):.4f} | {roc_auc_score(y, y_proba):.4f} | {precision_score(y, y_pred):.4f} | {recall_score(y, y_pred):.4f} | {f1_score(y, y_pred):.4f} | {matthews_corrcoef(y, y_pred):.4f} |\n"
+    st.markdown(eval_tab)
