@@ -63,18 +63,6 @@ with st.sidebar:
         list(MODEL_DUMP_FILES.keys()),
         index=4,
     )
-    st.divider()
-    
-    df_test_download=df_test.copy()
-    df_test_download['predicted_target']=y_pred
-    df_test_download_csv=df_test_download.to_csv(index=False).encode("utf-8")
-
-    st.download_button(
-    label="Download Prediction CSV For selected model",
-    data=df_test_download_csv,
-    file_name="Credit_Card_Prediction.csv",
-    mime="text/csv",
-    )
 
     
 # ---------------- Checking for Target Column Presence ---------------------
@@ -164,6 +152,19 @@ with tab_selected_model:
         st.markdown("**Classification Report**")
         report = classification_report(y, y_pred, target_names=["Non Defaulter", "Defaulter"])
         st.code(report, language="text")
+
+    st.divider()
+
+    df_test_download=df_test.copy()
+    df_test_download['predicted_target']=y_pred
+    df_test_download_csv=df_test_download.to_csv(index=False).encode("utf-8")
+
+    st.download_button(
+    label="Download Prediction CSV For selected model",
+    data=df_test_download_csv,
+    file_name="Credit_Card_Prediction.csv",
+    mime="text/csv",
+    )
 
 with tab_all_compare:
     st.subheader(f"All Model Comparision on Uploaded Data")
