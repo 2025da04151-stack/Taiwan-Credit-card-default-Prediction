@@ -64,7 +64,7 @@ with st.sidebar:
         index=4,
     )
     st.divider()
-    @st.cache_data
+    
     df_test_download=df_test.copy()
     df_test_download['predicted_target']=y_pred
     df_test_download_csv=df_test_download.to_csv(index=False).encode("utf-8")
