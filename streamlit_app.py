@@ -101,19 +101,20 @@ tab_selected_model, tab_all_compare = st.tabs([
 ])
 
 with tab_selected_model:
-    st.subheader(f"{selected_model}")
     
     # providing download button to download the input fields with predicted data
     df_test_download=df_test.copy()
     df_test_download['predicted_target']=y_pred
     df_test_download_csv=df_test_download.to_csv(index=False).encode("utf-8")
     st.download_button(
-    label=f"Download Prediction CSV",
+    label=f"Download Prediction CSV for {selected_model}",
     data=df_test_download_csv,
     file_name="Credit_Card_Prediction.csv",
     mime="text/csv",
     )
     
+    st.divider()
+    st.subheader(f"{selected_model}")
     # Displaying the evaluation metrics for selected model
     eval_11, eval_12, eval_13 = st.columns(3)
     eval_11.metric("Accuracy", f"{accuracy_score(y, y_pred):.4f}")
