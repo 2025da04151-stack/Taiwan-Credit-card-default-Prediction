@@ -170,6 +170,7 @@ with tab_selected_model:
     data=df_test_download_csv,
     file_name="Credit_Card_Prediction.csv",
     mime="text/csv",
+    type="primary",
     )
     
 
