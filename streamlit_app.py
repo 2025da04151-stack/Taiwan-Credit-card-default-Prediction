@@ -63,6 +63,20 @@ with st.sidebar:
         list(MODEL_DUMP_FILES.keys()),
         index=4,
     )
+    st.divider()
+    @st.cache_data
+    df_test_download=df_test.copy()
+    df_test_download['predicted_target']=y_pred
+    df_test_download_csv=df_test_download.to_csv(index=False).encode("utf-8")
+
+    st.download_button(
+    label="Download Prediction CSV For selected model",
+    data=df_test_download_csv,
+    file_name="Credit_Card_Prediction.csv",
+    mime="text/csv",
+    )
+
+    
 # ---------------- Checking for Target Column Presence ---------------------
 if TARGET_COLUMN not in df_test.columns:
     st.error(f"Uploaded csv file should have target column: '{TARGET_COLUMN}'")
@@ -154,8 +168,6 @@ with tab_selected_model:
 with tab_all_compare:
     st.subheader(f"All Model Comparision on Uploaded Data")
     col_model = st.columns(5)
-    #eval_tab = "| Model | Accuracy | AUC | Precision | Recall | F1 Score | MCC |\n"
-    #eval_tab += "|-------|----------|-----|-----------|--------|-----|-----|\n"
     for cols, classification_model in zip(col_model, MODEL_DUMP_FILES.keys()):
         with cols.container(border=True):
             cmodel = load_classification_model(classification_model)
