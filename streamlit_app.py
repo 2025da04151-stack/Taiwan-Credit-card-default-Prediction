@@ -70,11 +70,11 @@ if TARGET_COLUMN not in df_test.columns:
     st.error(f"Uploaded csv file should have target column: '{TARGET_COLUMN}'")
     st.stop()
 # ----------------- Dropping multicolinary columns -------------------------------------   
-df_test = df_test.drop(columns=["ID","BILL_AMT2","BILL_AMT3","BILL_AMT4","BILL_AMT5","BILL_AMT6"])
+df_test_fe = df_test.drop(columns=["ID","BILL_AMT2","BILL_AMT3","BILL_AMT4","BILL_AMT5","BILL_AMT6"])
 
 # ----------------- Separating Target column from feature list -------------------------
-X = df_test.drop(columns=[TARGET_COLUMN])
-y = df_test[TARGET_COLUMN]
+X = df_test_fe.drop(columns=[TARGET_COLUMN])
+y = df_test_fe[TARGET_COLUMN]
 
 # ------------------------ Loading Model file --------------------------------
 model = load_classification_model(selected_model)
@@ -101,6 +101,21 @@ tab_selected_model, tab_all_compare = st.tabs([
 ])
 
 with tab_selected_model:
+    # providing download button to download the input fields with predicted data
+    df_test_download=df_test.copy()
+    df_test_download['predicted_target']=y_pred
+    df_test_download_csv=df_test_download.to_csv(index=False).encode("utf-8")
+
+    st.download_button(
+    label="Download Prediction CSV For selected model",
+    data=df_test_download_csv,
+    file_name="Credit_Card_Prediction.csv",
+    mime="text/csv",
+    )
+    
+    st.divider()
+    
+    # Displaying the evaluation metrics for selected model
     st.subheader(f"{selected_model}")
     eval_11, eval_12, eval_13 = st.columns(3)
     eval_11.metric("Accuracy", f"{accuracy_score(y, y_pred):.4f}")
@@ -152,19 +167,6 @@ with tab_selected_model:
         st.markdown("**Classification Report**")
         report = classification_report(y, y_pred, target_names=["Non Defaulter", "Defaulter"])
         st.code(report, language="text")
-
-    st.divider()
-
-    df_test_download=df_test.copy()
-    df_test_download['predicted_target']=y_pred
-    df_test_download_csv=df_test_download.to_csv(index=False).encode("utf-8")
-
-    st.download_button(
-    label="Download Prediction CSV For selected model",
-    data=df_test_download_csv,
-    file_name="Credit_Card_Prediction.csv",
-    mime="text/csv",
-    )
 
 with tab_all_compare:
     st.subheader(f"All Model Comparision on Uploaded Data")
