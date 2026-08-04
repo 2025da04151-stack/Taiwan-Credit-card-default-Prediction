@@ -166,7 +166,7 @@ with tab_selected_model:
     # Download button for downloading prediction data
     df_test_download_csv=df_test_download.to_csv(index=False).encode("utf-8")
     st.download_button(
-    label="Download Prediction CSV",
+    label="Download Full Prediction CSV",
     data=df_test_download_csv,
     file_name="Credit_Card_Prediction.csv",
     mime="text/csv",
