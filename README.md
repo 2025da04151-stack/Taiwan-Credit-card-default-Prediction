@@ -147,6 +147,8 @@ Below 5 classification models are implemented to predict Credit Default. For the
 ## Streamlit App Link
 https://taiwan-credit-card-default-prediction-nmdfqnt3utjzuvoxuuywoj.streamlit.app/
 
+#### <i>Until the test data loaded using upload feature, the App will display all the evaluation metrics based on default test data present in Github. When the new test data loaded using the “Upload” feature, the App will change the evaluation metrics based on the new uploaded Data.</i>
+
 ### Tab1 - Only shows selected Model information
 <img width="1090" height="546" alt="image" src="https://github.com/user-attachments/assets/16cff1d0-fcd3-4741-a39e-0ece6fec72e3" />
 
